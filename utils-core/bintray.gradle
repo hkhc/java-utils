@@ -46,13 +46,13 @@ publishing {
             artifact javadocJar {
                 classifier "javadoc"
             }
-            groupId 'io.hkhc'
-            artifactId 'utils'
-            version '1.0'
+            groupId project.findProperty("group")
+            artifactId project.findProperty("artifactId")
+            version project.findProperty("version")
             pom.withXml {
                 def root = asNode()
                 root.appendNode('description', 'Java helper classes')
-                root.appendNode('name', 'java-utils')
+                root.appendNode('name', 'utils')
                 root.appendNode('url', 'https://github.com/hkhc/java-utils')
                 root.children().last() + pomConfig
             }
@@ -66,14 +66,15 @@ bintray {
     publications = ['BintrayPublication']
     pkg {
         repo = 'maven'
-        name = 'java-utils'
+        name = 'utils'
         licenses = ['Apache-2.0']
         vcsUrl = 'https://github.com/hkhc/java-utils.git'
+        issueTrackerUrl = 'https://github.com/hkhc/java-utils/issues'
         version {
             name = project.hasProperty('version')
-            desc = 'Java Utils'
+            desc = 'Java helper classes'
             released  = new Date()
-            vcsTag = '1.0'
+            vcsTag = project.findProperty("version")
         }
     }
 
