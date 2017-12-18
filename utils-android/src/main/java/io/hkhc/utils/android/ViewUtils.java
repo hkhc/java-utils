@@ -28,11 +28,12 @@ import android.widget.TextView;
 /**
  * Created by pandac on 10/12/14.
  */
+@SuppressWarnings("unused")
 public class ViewUtils {
 
     public static void text(ViewGroup vg, int resId, TextWatcher w) {
 
-        TextView tv = (TextView)vg.findViewById(resId);
+        TextView tv = vg.findViewById(resId);
 //        tv.addTextChangedListener(new );
 
     }

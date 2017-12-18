@@ -22,10 +22,12 @@ import java.io.StringWriter;
 import java.lang.reflect.Method;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 /**
  * Created by herman on 22/8/2016.
  */
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class PrintWriterLog extends AbstractLog {
 
     public static class Factory implements LogFactory {
@@ -53,7 +55,7 @@ public class PrintWriterLog extends AbstractLog {
     public PrintWriterLog(String tag, boolean timestamp, PrintWriter writer) {
         super(tag);
         this.writer = writer;
-        dateFormat = new SimpleDateFormat("MM-dd HH:mm:ss.SSS");
+        dateFormat = new SimpleDateFormat("MM-dd HH:mm:ss.SSS", Locale.US);
         int pid;
         try {
             Class<?> clazz = Class.forName("android.os.Process");

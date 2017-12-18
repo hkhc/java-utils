@@ -20,12 +20,13 @@ package io.hkhc.utils.log;
 /**
  * Created by herman on 21/2/2016.
  */
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class NullLog extends AbstractLog {
 
     public static class Factory implements LogFactory {
         @Override
         public L newLog(String tag) {
-            return new StdoutLog(tag);
+            return new NullLog(tag);
         }
     }
 

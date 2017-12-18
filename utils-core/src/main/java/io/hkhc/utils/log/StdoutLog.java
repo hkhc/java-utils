@@ -22,6 +22,7 @@ import java.io.PrintWriter;
 /**
  * Created by herman on 21/2/2016.
  */
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class StdoutLog extends PrintWriterLog {
 
     public StdoutLog(String tag) {

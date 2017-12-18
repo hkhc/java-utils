@@ -22,8 +22,9 @@ import android.text.Spanned;
 import io.hkhc.utils.Consts;
 
 /**
- * Created by pandac on 12/12/14.
+ * Helper methods for span related operations
  */
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class SpanUtils {
 
     public static final String TAG = Consts.logTag("SU");
@@ -34,7 +35,7 @@ public class SpanUtils {
      * @param spanClass The target span class
      * @return true if a span of the target class is found in s. false otherwise.
      */
-    public static boolean hasSpan(Spanned s, Class<? extends Object> spanClass) {
+    public static boolean hasSpan(Spanned s, Class<?> spanClass) {
         return s.getSpans(0, s.length(), spanClass).length>0;
     }
 

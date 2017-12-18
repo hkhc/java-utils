@@ -20,6 +20,7 @@ package io.hkhc.utils.log;
 /**
  * Created by hermanc on 22/7/16.
  */
+@SuppressWarnings("unused")
 public class MoreTagLog extends AbstractLog {
 
     private L sourceLog;

@@ -30,6 +30,7 @@ import static io.hkhc.utils.StringUtils.getIdeographicChecker;
  * Created by pandac on 12/12/14.
  * TODO : Symbol character still passed. Need a testcase (for level<19?)
  */
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class IdeographicInputFilter implements InputFilter {
 
     private static final String TAG = Consts.logTag("IIF");

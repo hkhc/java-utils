@@ -20,6 +20,7 @@ package io.hkhc.utils.log;
 /**
  * Created by hermanc on 23/8/16.
  */
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class CompositeLog extends AbstractLog {
 
     private L[] logs;

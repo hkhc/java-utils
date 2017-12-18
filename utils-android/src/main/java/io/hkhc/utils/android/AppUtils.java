@@ -34,6 +34,7 @@ import io.hkhc.utils.ArrayUtils;
 /**
  * Created by pandac on 24/12/14.
  */
+@SuppressWarnings("unused")
 public class AppUtils {
 
     /**

@@ -20,6 +20,7 @@ package io.hkhc.utils;
 /**
  * Created by pandac on 2/12/14.
  */
+@SuppressWarnings("unused")
 public class Consts {
 
     public static String META_TAG = "WU";

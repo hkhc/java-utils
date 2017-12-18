@@ -18,19 +18,31 @@
 package io.hkhc.utils;
 
 /**
- * Created by herman on 24/6/15.
+ * Array helper methods
  */
+@SuppressWarnings("unused")
 public class ArrayUtils {
 
+    /**
+     * Box the elements of integer array
+     * @param array the int array which elements to be boxed
+     * @return Boxed Integer array
+     */
     public static Integer[] box(int[] array) {
         Integer[] ia = new Integer[array.length];
         for(int i=0;i<array.length;i++) {
-            ia[i] = Integer.valueOf(array[i]);
+            ia[i] = array[i];
         }
 
         return ia;
     }
 
+    /**
+     * Check if an array is null or empty
+     * @param array array to be inspected
+     * @param <T> type of array
+     * @return true if the array is null or empty
+     */
     public static <T> boolean isEmpty(T[] array) {
         return array==null || array.length==0;
     }

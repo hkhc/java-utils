@@ -20,14 +20,11 @@ package io.hkhc.utils.android;
 import android.content.Intent;
 import android.os.Bundle;
 
-import java.util.Iterator;
-import java.util.Set;
-
 /**
  * Created by hermanc on 1/11/2016.
  * TODO merge with com.expressvpn.vpn.IntentUtils
  */
-
+@SuppressWarnings("unused")
 public class IntentUtils {
 
 
@@ -35,35 +32,36 @@ public class IntentUtils {
 
         StringBuilder builder = new StringBuilder();
 
-        builder.append("action : " + i.getAction());
-        builder.append("\n");
+        builder.append("action : ")
+                .append(i.getAction())
+                .append("\n");
         if (i.getData()!=null) {
-            builder.append("data : " + i.getDataString());
-            builder.append("\n");
+            builder.append("data : ")
+                    .append(i.getDataString())
+                    .append("\n");
         }
 
         if (i.getComponent()!=null) {
-            builder.append("component : " + i.getComponent());
-            builder.append("\n");
+            builder.append("component : ")
+                    .append(i.getComponent())
+                    .append("\n");
         }
 
         if (i.getCategories()!=null && !i.getCategories().isEmpty()) {
             builder.append("categories :");
             for (String s : i.getCategories()) {
-                builder.append(" ");
-                builder.append(s);
+                builder.append(" ").append(s);
             }
             builder.append("\n");
         }
 
         Bundle bundle = i.getExtras();
         if (bundle != null) {
-            Set<String> keys = bundle.keySet();
-            Iterator<String> it = keys.iterator();
-            while (it.hasNext()) {
-                String key = it.next();
-                builder.append("[" + key + "=" + bundle.get(key)+"]");
-                builder.append('\n');
+            for(String key : bundle.keySet()) {
+                builder.append("[")
+                        .append(key).append("=").append(bundle.get(key))
+                        .append("]")
+                        .append('\n');
             }
         }
         return builder.toString();

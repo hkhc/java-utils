@@ -19,12 +19,14 @@ package io.hkhc.utils.android;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.support.annotation.NonNull;
 import android.text.style.ReplacementSpan;
 
 /**
  * Created by pandac on 12/12/14.
  * Add a bracket (as specified in the constructor) to the quoted portion of CharSequence, during rendering.
  */
+@SuppressWarnings("unused")
 public class BracketSpan extends ReplacementSpan {
 
     private char openBracket,closeBracket;
@@ -42,7 +44,7 @@ public class BracketSpan extends ReplacementSpan {
 
     Hence we calculate the total width from scratch here.
      */
-    public int getSize(Paint paint, CharSequence text, int start, int end, Paint.FontMetricsInt fm) {
+    public int getSize(@NonNull Paint paint, CharSequence text, int start, int end, Paint.FontMetricsInt fm) {
         String bracketed = openBracket+text.subSequence(start, end).toString()+closeBracket;
         float[] widths = new float[bracketed.length()];
         paint.getTextWidths(bracketed, 0, bracketed.length(), widths);
@@ -52,7 +54,8 @@ public class BracketSpan extends ReplacementSpan {
     }
 
     @Override
-    public void draw(Canvas canvas, CharSequence text, int start, int end, float x, int top, int y, int bottom, Paint paint) {
+    public void draw(@NonNull Canvas canvas, CharSequence text, int start, int end,
+                     float x, int top, int y, int bottom, @NonNull Paint paint) {
         String bracketed = openBracket + text.subSequence(start, end).toString()+closeBracket;
         canvas.drawText(bracketed, x, y, paint);
     }

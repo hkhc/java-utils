@@ -22,6 +22,7 @@ import io.hkhc.utils.Consts;
 /**
  * Created by herman on 21/2/2016.
  */
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class Logger {
 
     private static final int MAX_LOG_TAG_LENGTH = 23;
@@ -41,12 +42,12 @@ public class Logger {
 
     public static String getClassNameAbbr(Class clazz) {
         String name = clazz.getSimpleName();
-        StringBuffer buffer = new StringBuffer();
+        StringBuilder builder = new StringBuilder();
         char[] nameArray = name.toCharArray();
         for(char c : nameArray) {
-            if (Character.isUpperCase(c)) buffer.append(c);
+            if (Character.isUpperCase(c)) builder.append(c);
         }
-        return buffer.toString();
+        return builder.toString();
     }
 
     public static String getLogTag(Class clazz) {

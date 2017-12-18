@@ -23,8 +23,9 @@ import java.lang.reflect.Method;
 import javax.xml.stream.events.Characters;
 
 /**
- * Created by pandac on 12/12/14.
+ * Helper methods for Strings
  */
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class StringUtils {
 
     private static final String TAG = Consts.logTag("SU");
@@ -189,6 +190,7 @@ public class StringUtils {
      * @param s the String to be check
      * @return true if the String can be parsed as integer. Falase otherwise
      */
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     public static boolean isNumber(String s) {
         try {
             Integer.parseInt(s);

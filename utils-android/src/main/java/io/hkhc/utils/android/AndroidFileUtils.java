@@ -30,6 +30,7 @@ import java.io.InputStream;
 /**
  * Created by pandac on 5/1/15.
  */
+@SuppressWarnings("unused")
 public class AndroidFileUtils {
 
     private static final String ASSET_FILE_PREFIX = "/android_asset/";

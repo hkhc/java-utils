@@ -24,6 +24,7 @@ import io.hkhc.utils.log.LogFactory;
 /**
  * Created by herman on 21/2/2016.
  */
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class AndroidLog extends AbstractLog {
 
     public static class Factory implements LogFactory {

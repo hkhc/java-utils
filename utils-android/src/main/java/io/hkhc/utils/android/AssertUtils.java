@@ -25,6 +25,7 @@ import static io.hkhc.utils.android.SpanUtils.listSpans;
 /**
  * Created by herman on 13/8/15.
  */
+@SuppressWarnings("unused")
 public class AssertUtils {
 
     public static void assertSpanClassSequence(Object[] spans, Class... spanClasses) {

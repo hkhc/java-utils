@@ -19,6 +19,7 @@ package io.hkhc.utils.android;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.support.annotation.NonNull;
 import android.text.style.ReplacementSpan;
 
 /**
@@ -32,14 +33,16 @@ import android.text.style.ReplacementSpan;
  * Then when the spannable is placed into TextView, it is rendered as "Hllo".
  *
  */
+@SuppressWarnings("unused")
 public class HiddenSpan extends ReplacementSpan {
 
     @Override
-    public int getSize(Paint paint, CharSequence text, int start, int end, Paint.FontMetricsInt fm) {
+    public int getSize(@NonNull Paint paint, CharSequence text, int start, int end, Paint.FontMetricsInt fm) {
         return 0;
     }
 
     @Override
-    public void draw(Canvas canvas, CharSequence text, int start, int end, float x, int top, int y, int bottom, Paint paint) {
+    public void draw(@NonNull Canvas canvas, CharSequence text, int start, int end,
+                     float x, int top, int y, int bottom, @NonNull Paint paint) {
     }
 }

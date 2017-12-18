@@ -30,9 +30,7 @@ import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.Writer;
 
-import io.hkhc.utils.Consts;
-
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class FileUtils {
 	
 	private static final String TAG = Consts.logTag("FU");
@@ -92,7 +90,7 @@ public class FileUtils {
 	public static int readStreamToByteArray(InputStream is, byte[] output) throws IOException {
 
 		int offset = 0;
-		int count = 0;
+		int count;
 		while (offset<output.length
 				&& (count=is.read(output, offset, output.length-offset))!=-1) {
 			offset+=count;
@@ -193,8 +191,7 @@ public class FileUtils {
 	                if (deleteFolder(f, level+1, true))
                         deleted = true;
 	            } else {
-	                f.delete();
-                    deleted = true;
+	                if (f.delete()) deleted = true;
 	            }
 	        }
 	    }

@@ -22,6 +22,7 @@ import android.view.Menu;
 /**
  * Created by pandac on 21/2/15.
  */
+@SuppressWarnings("unused")
 public class MenuHolder {
 
     private Menu menu = null;

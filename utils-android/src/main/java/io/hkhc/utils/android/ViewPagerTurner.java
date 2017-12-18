@@ -26,6 +26,7 @@ import io.hkhc.utils.Consts;
 /**
  * Created by herman on 6/7/15.
  */
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class ViewPagerTurner {
 
     private static final String TAG = Consts.logTag("VPT");

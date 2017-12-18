@@ -18,8 +18,9 @@
 package io.hkhc.utils;
 
 /**
- * Created by pandac on 12/12/14.
+ * Helper methods for byte level operations
  */
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class ByteUtils {
 
     public static void fillInt(byte[] b, int offset, long value) {
