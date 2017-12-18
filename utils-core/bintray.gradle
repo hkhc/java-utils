@@ -15,6 +15,8 @@
  *
  */
 
+artifactId = "utils-core"
+
 def pomConfig = {
     licenses {
         license {
@@ -52,7 +54,7 @@ publishing {
             pom.withXml {
                 def root = asNode()
                 root.appendNode('description', 'Java helper classes')
-                root.appendNode('name', 'utils')
+                root.appendNode('name', 'utils-core')
                 root.appendNode('url', 'https://github.com/hkhc/java-utils')
                 root.children().last() + pomConfig
             }
@@ -66,10 +68,14 @@ bintray {
     publications = ['BintrayPublication']
     pkg {
         repo = 'maven'
-        name = 'utils'
+        name = project.findProperty("artifactId")
+        desc = 'Java helper classes'
         licenses = ['Apache-2.0']
-        vcsUrl = 'https://github.com/hkhc/java-utils.git'
+        websiteUrl = 'https://github.com/hkhc/java-utils'
+        vcsUrl = 'https://github.com/hkhc/java-utils'
         issueTrackerUrl = 'https://github.com/hkhc/java-utils/issues'
+        githubRepo = 'hkhc/java-utils'
+        githubReleaseNotesFile = 'README.md'
         version {
             name = project.hasProperty('version')
             desc = 'Java helper classes'
