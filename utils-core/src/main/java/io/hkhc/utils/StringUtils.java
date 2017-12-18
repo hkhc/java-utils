@@ -131,7 +131,7 @@ public class StringUtils {
 
     /**
      * Get an object to Check if a character is ideographic characters like Chinese, Korean, Hiragana, Katakana, etc.
-     * For API level 19 or Jdk 7 or above, we use the standard API for the check. we made our own check for level<19.
+     * For API level 19 or Jdk 7 or above, we use the standard API for the check. we made our own check for level&lt;19.
      * @return the implementation of ideographic checker.
      */
     public static IdeographicChecker getIdeographicChecker() {
@@ -146,44 +146,6 @@ public class StringUtils {
         }
 
     }
-
-//    public static boolean isIdeographic(int c) {
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
-//            return isIdeographic19(c);
-//        else
-//            return isIdeographicOld(c);
-//    }
-//
-//    /**
-//     * Check if a character is ideographic with standard API. This method is just used to accomodate
-//     * the TargetApi annotation
-//     * @see StringUtils#isIdeographic(int)
-//     * @param c The character to be checked.
-//     * @return true if it is a ideographic character, false otherwise.
-//     */
-//    @TargetApi(19)
-//    private static boolean isIdeographic19(int c) {
-//        return Character.isIdeographic(c);
-//    }
-//
-//    private static int[] hansRange = {
-//            0x4e00, 0x9fff,
-//            0x2e80, 0x2fff,
-//            0xf900, 0xfaff
-//    };
-//
-//    /**
-//     * Check if a character is ideographic in our own way
-//     * @see StringUtils#isIdeographic(int)
-//     * @param c
-//     * @return
-//     */
-//    private static boolean isIdeographicOld(int c) {
-//        for(int i=0;i<hansRange.length;i+=2) {
-//            if (c>=hansRange[i] && c<=hansRange[i+1]) return true;
-//        }
-//        return false;
-//    }
 
     /**
      * Check if a string is parsable to number, without throwing exception
