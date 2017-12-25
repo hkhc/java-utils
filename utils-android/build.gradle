@@ -15,23 +15,23 @@
  *
  */
 
-apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
+import com.android.build.gradle.api.SourceKind
 
 buildscript {
     repositories {
-        mavenCentral()
+        jcenter()
     }
 
     dependencies {
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
+        classpath 'digital.wup:android-maven-publish:3.1.1'
     }
 }
 
+
+apply plugin: 'com.android.library'
+
 android {
     compileSdkVersion 26
-
-
 
     defaultConfig {
         minSdkVersion 14
@@ -52,6 +52,9 @@ android {
 
 }
 
+
+apply from: 'bintray.gradle'
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -63,3 +66,7 @@ dependencies {
     implementation project(':utils-core')
 
 }
+
+//afterEvaluate {
+//    tasks.findByName('bintrayUpload').dependsOn(tasks.findByName('publishToMavenLocal'))
+//}

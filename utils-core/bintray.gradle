@@ -15,7 +15,6 @@
  *
  */
 
-artifactId = "utils-core"
 
 def pomConfig = {
     licenses {
@@ -34,54 +33,63 @@ def pomConfig = {
     }
 
     scm {
-        url "https://github.com/hkhc/java-utils"
+        url project.findProperty("vcsUrl")
     }
 }
 
 publishing {
     publications {
-        BintrayPublication(MavenPublication) {
+        Bintray(MavenPublication) {
             from components.java
+            components.each {
+                println "Components " + it
+            }
             artifact sourcesJar {
                 classifier "sources"
             }
             artifact javadocJar {
                 classifier "javadoc"
             }
-            groupId project.findProperty("group")
-            artifactId project.findProperty("artifactId")
-            version project.findProperty("version")
+            groupId project.findProperty('group')
+            artifactId project.findProperty('artifactId')
+            version project.findProperty('version')
             pom.withXml {
                 def root = asNode()
-                root.appendNode('description', 'Java helper classes')
-                root.appendNode('name', 'utils-core')
-                root.appendNode('url', 'https://github.com/hkhc/java-utils')
+                root.appendNode('description', project.findProperty('description'))
+                root.appendNode('name', project.findProperty('artifactId'))
+                root.appendNode('url', project.findProperty('vcsUrl'))
                 root.children().last() + pomConfig
             }
         }
     }
 }
 
+//pubext = project.extensions.findByType(PublishingExtension)
+//println "pubext " + pubext
+
 bintray {
     user = System.getenv('BINTRAY_USER')
     key = System.getenv('BINTRAY_KEY')
-    publications = ['BintrayPublication']
+    publications = ['Bintray']
+    override = true
+    dryRun = true
     pkg {
         repo = 'maven'
-        name = project.findProperty("artifactId")
-        desc = 'Java helper classes'
+        name = project.findProperty('artifactId')
+        desc = project.findProperty('description')
         licenses = ['Apache-2.0']
-        websiteUrl = 'https://github.com/hkhc/java-utils'
-        vcsUrl = 'https://github.com/hkhc/java-utils'
-        issueTrackerUrl = 'https://github.com/hkhc/java-utils/issues'
-        githubRepo = 'hkhc/java-utils'
-        githubReleaseNotesFile = 'README.md'
+        websiteUrl = project.findProperty('vcsUrl')
+        vcsUrl = project.findProperty('vcsUrl')
+        issueTrackerUrl = project.findProperty('issuesUrl')
+        githubRepo = project.findProperty('githubRepo')
+        githubReleaseNotesFile = project.findProperty('releaseNote')
         version {
-            name = project.hasProperty('version')
-            desc = 'Java helper classes'
+            name = project.findProperty('version')
+            desc = project.findProperty('description')
             released  = new Date()
             vcsTag = project.findProperty("version")
         }
     }
 
 }
+

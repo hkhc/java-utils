@@ -15,15 +15,17 @@
  *
  */
 
-apply plugin: 'java-library'
+plugins {
+    id "java-library"
+    id "maven-publish"
+}
+
 apply plugin: 'com.jfrog.bintray'
-apply plugin: 'maven'
-apply plugin: 'maven-publish'
 apply from: 'bintray.gradle'
 
 task sourcesJar(type: Jar, dependsOn: classes) {
     classifier = 'sources'
-    from sourceSets.main.allSource
+    from sourceSets.main.java.srcDirs
 }
 
 javadoc.failOnError = false
@@ -36,6 +38,7 @@ artifacts {
     archives sourcesJar, javadocJar
 }
 
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation 'junit:junit:4.12'
@@ -44,3 +47,4 @@ dependencies {
 
 sourceCompatibility = "1.7"
 targetCompatibility = "1.7"
+
