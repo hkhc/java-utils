@@ -33,7 +33,7 @@ public class ViewUtils {
 
     public static void text(ViewGroup vg, int resId, TextWatcher w) {
 
-        TextView tv = vg.findViewById(resId);
+        TextView tv = (TextView)vg.findViewById(resId);
 //        tv.addTextChangedListener(new );
 
     }
