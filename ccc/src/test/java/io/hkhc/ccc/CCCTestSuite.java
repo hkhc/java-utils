@@ -15,4 +15,18 @@
  *
  */
 
-include ':utils-core', ':utils-android', ':ccc'
+package io.hkhc.ccc;
+
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+
+/**
+ * Created by herman on 13/9/15.
+ */
+
+@RunWith(Suite.class)
+@Suite.SuiteClasses({
+        CCCDBTest.class
+})
+public class CCCTestSuite {
+}

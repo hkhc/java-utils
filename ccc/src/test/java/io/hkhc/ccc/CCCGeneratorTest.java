@@ -15,4 +15,19 @@
  *
  */
 
-include ':utils-core', ':utils-android', ':ccc'
+package io.hkhc.ccc;
+
+import org.junit.Test;
+
+/**
+ * Created by herman on 7/12/2017.
+ */
+
+public class CCCGeneratorTest {
+
+    @Test
+    public void testOne() {
+
+    }
+
+}

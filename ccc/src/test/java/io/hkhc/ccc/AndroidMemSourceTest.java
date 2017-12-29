@@ -15,4 +15,28 @@
  *
  */
 
-include ':utils-core', ':utils-android', ':ccc'
+package io.hkhc.ccc;
+
+import org.junit.Test;
+
+import static junit.framework.Assert.assertEquals;
+
+/**
+ * Created by herman on 4/12/2017.
+ */
+
+public class AndroidMemSourceTest {
+
+    @Test
+    public void testLoad() throws Exception {
+
+        ResourceSource source = new ResourceSource();
+
+        // should not throw Exception
+        source.load();
+
+        assertEquals(6772, source.getCCC('鄧'));
+
+    }
+
+}

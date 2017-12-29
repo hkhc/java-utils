@@ -15,4 +15,40 @@
  *
  */
 
-include ':utils-core', ':utils-android', ':ccc'
+package io.hkhc.ccc;
+
+/**
+ * Created by herman on 18/12/2017.
+ */
+public class CharEntry {
+    private int unicode;
+    private int ccc;
+    private String group = null;
+
+    public CharEntry() {
+    }
+
+    public int getUnicode() {
+        return unicode;
+    }
+
+    public void setUnicode(int unicode) {
+        this.unicode = unicode;
+    }
+
+    public int getCcc() {
+        return ccc;
+    }
+
+    public void setCcc(int ccc) {
+        this.ccc = ccc;
+    }
+
+    public String getGroup() {
+        return group;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
+    }
+}

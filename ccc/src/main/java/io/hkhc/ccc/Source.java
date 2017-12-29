@@ -15,4 +15,19 @@
  *
  */
 
-include ':utils-core', ':utils-android', ':ccc'
+package io.hkhc.ccc;
+
+/**
+ * Created by herman on 8/9/15.
+ */
+public interface Source {
+
+    static final String CCC_TABLE_FILE = "io/hkhc/ccc/ccc-table-01.dat";
+
+    void load() throws CCCException; // load with default filename.
+    void load(String destination) throws CCCException;
+
+    int getCCC(int c);
+    int getCodeCount();
+
+}

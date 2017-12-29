@@ -15,4 +15,28 @@
  *
  */
 
-include ':utils-core', ':utils-android', ':ccc'
+package io.hkhc.ccc;
+
+import org.junit.Test;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+
+/**
+ * Created by herman on 16/12/2017.
+ */
+
+public class SourceParserTest {
+
+    @Test(expected=NullPointerException.class)
+    public void test_null_prioritizer() throws IOException {
+        SourceParser parser = new SourceParser(null, new ByteArrayInputStream(new byte[] {}));
+    }
+
+    @Test(expected=NullPointerException.class)
+    public void test_null_inputstream() throws IOException {
+        SourceParser parser = new SourceParser(new Prioritizer(), null);
+    }
+
+
+}

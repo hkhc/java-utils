@@ -15,4 +15,18 @@
  *
  */
 
-include ':utils-core', ':utils-android', ':ccc'
+package io.hkhc.ccc;
+
+/**
+ * Created by herman on 8/9/15.
+ */
+public class ResourceSource extends BaseSource implements Source {
+
+    private static final String TAG = Consts.logTag("AMS");
+
+    @Override
+    public void load() throws CCCException {
+        load(getClass().getClassLoader().getResourceAsStream(Source.CCC_TABLE_FILE));
+    }
+
+}

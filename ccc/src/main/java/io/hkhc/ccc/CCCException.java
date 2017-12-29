@@ -15,4 +15,27 @@
  *
  */
 
-include ':utils-core', ':utils-android', ':ccc'
+package io.hkhc.ccc;
+
+/**
+ * Created by herman on 3/12/2017.
+ */
+
+public class CCCException extends Exception {
+
+    public CCCException() {
+        super();
+    }
+
+    public CCCException(String detailMessage) {
+        super(detailMessage);
+    }
+
+    public CCCException(String detailMessage, Throwable throwable) {
+        super(detailMessage, throwable);
+    }
+
+    public CCCException(Throwable throwable) {
+        super(throwable);
+    }
+}
