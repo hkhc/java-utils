@@ -23,6 +23,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.io.UnsupportedEncodingException;
@@ -156,6 +157,19 @@ public class AppUtils {
 
         return intent;
 
+    }
+
+    public static void logIntent(Intent intent, String tag, String msg) {
+        Log.d(tag, msg);
+        Log.d(tag, "Intent action: " + intent.getAction());
+        Log.d(tag, "Intent data: " + intent.getDataString());
+        Log.d(tag, "Intent type: " + intent.getType());
+        Log.d(tag, "Intent extra : " );
+        if (intent.getExtras()!=null) {
+            for (String key : intent.getExtras().keySet()) {
+                Log.d(tag, key + ":" + intent.getExtras().get(key));
+            }
+        }
     }
 
 }

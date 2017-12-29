@@ -20,8 +20,6 @@ package io.hkhc.utils;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import javax.xml.stream.events.Characters;
-
 /**
  * Helper methods for Strings
  */
@@ -91,7 +89,8 @@ public class StringUtils {
 
         static {
             try {
-                checkerMethod = Characters.class.getMethod("isIdeographic", char.class);
+                System.out.println("Init Jdk7IdeographicChecker");
+                checkerMethod = Character.class.getMethod("isIdeographic", int.class);
             } catch (NoSuchMethodException e) {
                 checkerMethod = null;
             }
