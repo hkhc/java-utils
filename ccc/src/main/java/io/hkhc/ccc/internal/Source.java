@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. Herman Cheung
+ * Copyright (c) 2018. Herman Cheung
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,4 +15,21 @@
  *
  */
 
-include ':utils-core', ':utils-android', ':ccc'
+package io.hkhc.ccc.internal;
+
+import io.hkhc.ccc.CCCException;
+
+/**
+ * Created by herman on 8/9/15.
+ */
+public interface Source {
+
+    static final String CCC_TABLE_FILE = "io/hkhc/ccc/ccc-table-01.dat";
+
+    void load() throws CCCException; // load with default filename.
+    void load(String destination) throws CCCException;
+
+    int getCCC(int c);
+    int getCodeCount();
+
+}

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. Herman Cheung
+ * Copyright (c) 2018. Herman Cheung
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,4 +15,28 @@
  *
  */
 
-include ':utils-core', ':utils-android', ':ccc'
+package io.hkhc.utils;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Created by herman on 6/1/2018.
+ */
+
+public class ProgressList implements FileOptions.Progress {
+
+    final List<Integer> progressList = new ArrayList<>();
+
+    @Override
+    public void progress(int count) {
+        progressList.add(count);
+    }
+
+    public List<Integer> getProgressList() {
+        return progressList;
+    }
+
+
+}
+

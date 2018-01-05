@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. Herman Cheung
+ * Copyright (c) 2018. Herman Cheung
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,4 +15,19 @@
  *
  */
 
-include ':utils-core', ':utils-android', ':ccc'
+package io.hkhc.ccc.cli;
+
+import org.junit.Test;
+
+/**
+ * Created by herman on 7/12/2017.
+ */
+
+public class CCCGeneratorTest {
+
+    @Test
+    public void testOne() {
+
+    }
+
+}

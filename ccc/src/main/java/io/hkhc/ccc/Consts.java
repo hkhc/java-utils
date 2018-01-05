@@ -15,4 +15,17 @@
  *
  */
 
-include ':utils-core', ':utils-android', ':ccc'
+package io.hkhc.ccc;
+
+/**
+ * Created by herman on 8/9/15.
+ */
+public class Consts {
+
+    public static final String META_TAG = "CCC";
+
+    public static String logTag(String t) {
+        return META_TAG+"/"+t;
+    }
+
+}

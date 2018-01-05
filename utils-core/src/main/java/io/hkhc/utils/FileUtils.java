@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. Herman Cheung
+ * Copyright (c) 2018. Herman Cheung
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,127 +35,158 @@ public class FileUtils {
 	
 	private static final String TAG = Consts.logTag("FU");
 
-	public static final String DEFAULT_ENCODING="utf-8";
+	private static final FileOptions defaultOptions = new FileOptions();
 
 	public static String readFileToString(String path) throws IOException {
-		return readFileToString(path, DEFAULT_ENCODING);
+		return readFileToString(path, defaultOptions);
 	}
 
-	public static String readFileToString(String path, String encoding) throws IOException {
-		
-		return readStreamToString(new FileInputStream(path), encoding);
-				
+	public static String readFileToString(String path, FileOptions options) throws IOException {
+		return readStreamToString(new FileInputStream(path), options);
 	}
 
 	public static String readStreamToString(InputStream is) throws IOException {
-		return readStreamToString(is, DEFAULT_ENCODING);
+		return readStreamToString(is, defaultOptions);
 	}
 
-	public static String readStreamToString(InputStream is, String encoding) throws IOException {
+	public static String readStreamToString(InputStream is, FileOptions options) throws IOException {
 		
-		Reader r = new InputStreamReader(is, encoding);
+		Reader r = new InputStreamReader(is, options.getEncoding());
 		
 		StringBuilder builder = new StringBuilder();
-		
-		char[] buffer = new char[4096];
-		int count;
-		while ((count=r.read(buffer))!=-1) {
-			builder.append(buffer, 0, count);
+
+		char[] buffer = new char[options.getBufferSize()];
+		int len;
+		int count=0;
+		try {
+			while ((len = r.read(buffer)) != -1) {
+				builder.append(buffer, 0, len);
+				count += len;
+				options.getProgressCallback().progress(count);
+			}
 		}
-		
-		r.close();
+		finally {
+			r.close();
+		}
 		
 		return builder.toString();
 		
 	}
 
 	public static byte[] readFileToByteArray(String path) throws IOException {
-		return readStreamToByteArray(new FileInputStream(path));
+		return readFileToByteArray(path, defaultOptions);
+	}
+
+	public static byte[] readFileToByteArray(String path, FileOptions options) throws IOException {
+		return readStreamToByteArray(new FileInputStream(path), options);
 	}
 
 	public static byte[] readStreamToByteArray(InputStream is) throws IOException {
+		return readStreamToByteArray(is, defaultOptions);
+	}
+
+	public static byte[] readStreamToByteArray(InputStream is, FileOptions options) throws IOException {
 
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
-		byte[] buffer = new byte[4096];
-		int count;
-		while ((count=is.read(buffer))!=-1) {
-			baos.write(buffer, 0, count);
+		byte[] buffer = new byte[options.getBufferSize()];
+		int len;
+		int count=0;
+		try {
+			while ((len = is.read(buffer)) != -1) {
+				baos.write(buffer, 0, len);
+				count += len;
+				options.getProgressCallback().progress(count);
+			}
+		}
+		finally {
+			is.close();
 		}
 
 		return baos.toByteArray();
 
 	}
 
-	public static int readStreamToByteArray(InputStream is, byte[] output) throws IOException {
+	public static int readStreamToByteArray(InputStream is, byte[] output, FileOptions options) throws IOException {
 
 		int offset = 0;
-		int count;
+		int len;
 		while (offset<output.length
-				&& (count=is.read(output, offset, output.length-offset))!=-1) {
-			offset+=count;
+				&& (len=is.read(output, offset, output.length-offset))!=-1) {
+			offset+=len;
+			options.getProgressCallback().progress(offset);
 		}
 
 		return offset;
 
 	}
 
-	public static void writeStringToFile(String path, String encoding, String value) throws IOException {
-		
-		writeStringToStream(new FileOutputStream(path), encoding, value);
-		
+	public static void writeStringToFile(String path, String value) throws IOException {
+		writeStringToFile(path, value, defaultOptions);
 	}
+
+	public static void writeStringToFile(String path, String value, FileOptions options) throws IOException {
+		writeStringToStream(new FileOutputStream(path), value, options);
+	}
+
 
 	public static void writeStreamToStream(OutputStream os, InputStream is) throws IOException {
-		writeStreamToStream(os, is, true);
+		writeStreamToStream(os, is, defaultOptions);
 	}
 
 	public static void writeStreamToStream(OutputStream os, InputStream is,
-										   @SuppressWarnings("SameParameterValue") boolean closeInputStream) throws IOException {
+										   FileOptions options) throws IOException {
 		
-		int bufferSize = 16384;
-		byte[] buffer = new byte[bufferSize];
-		int count;
-		while ((count=is.read(buffer, 0, bufferSize))!=-1) {
-			os.write(buffer, 0, count);
+		byte[] buffer = new byte[options.getBufferSize()];
+		int len;
+		int count = 0;
+		try {
+			while ((len = is.read(buffer, 0, buffer.length)) != -1) {
+				os.write(buffer, 0, len);
+				count += len;
+				options.getProgressCallback().progress(count);
+			}
+		}
+		finally {
+
+			if (options.isCloseInputStream())
+				is.close();
+			if (options.isCloseOutputStream())
+				os.close();
 		}
 
-		if (closeInputStream)
-			is.close();
-		os.close();
-
 	}
 
-	public static void writeStreamToStream(OutputStream os, InputStream is,
-										   @SuppressWarnings("SameParameterValue") boolean closeInputStream,
-										   @SuppressWarnings("SameParameterValue") boolean closeOutputStream) throws IOException {
+	public static void writeStringToStream(OutputStream os, String value) throws IOException {
+		writeStringToStream(os, value, defaultOptions);
+	}
 
-		int bufferSize = 16384;
-		byte[] buffer = new byte[bufferSize];
-		int count;
-		while ((count=is.read(buffer, 0, bufferSize))!=-1) {
-			os.write(buffer, 0, count);
+	public static void writeStringToStream(OutputStream os, String value, FileOptions options) throws IOException {
+		
+		Writer w = new OutputStreamWriter(os, options.getEncoding());
+		try {
+			w.write(value);
 		}
-		
-		if (closeInputStream)
-			is.close();
-		os.close();
-		
+		finally {
+			w.close();
+		}
+
 	}
-	
-	public static void writeStringToStream(OutputStream os, String encoding, String value) throws IOException {
-		
-		Writer w = new OutputStreamWriter(os, encoding);
-		w.write(value);
-		w.close();
-		
-	}
-	
+
 	public static void writeBytesToFile(String path, byte[] data) throws IOException {
+		writeBytesToFile(path, data, defaultOptions);
+	}
+
+	public static void writeBytesToFile(String path, byte[] data, FileOptions options) throws IOException {
 		
 		FileOutputStream os = new FileOutputStream(path);
-		os.write(data);
-		os.close();
+
+		try {
+			os.write(data);
+		}
+		finally {
+			os.close();
+		}
 		
 	}
 	

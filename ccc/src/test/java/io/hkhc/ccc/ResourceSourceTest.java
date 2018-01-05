@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. Herman Cheung
+ * Copyright (c) 2018. Herman Cheung
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,4 +15,28 @@
  *
  */
 
-include ':utils-core', ':utils-android', ':ccc'
+package io.hkhc.ccc;
+
+import org.junit.Test;
+
+import static junit.framework.Assert.assertEquals;
+
+/**
+ * Created by herman on 4/12/2017.
+ */
+
+public class ResourceSourceTest {
+
+    @Test
+    public void testLoad() throws Exception {
+
+        ResourceSource source = new ResourceSource();
+
+        // should not throw Exception
+        source.load();
+
+        assertEquals(6772, source.getCCC('鄧'));
+
+    }
+
+}

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. Herman Cheung
+ * Copyright (c) 2018. Herman Cheung
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,4 +15,20 @@
  *
  */
 
-include ':utils-core', ':utils-android', ':ccc'
+package io.hkhc.ccc;
+
+import io.hkhc.ccc.internal.Source;
+
+/**
+ * Created by herman on 8/9/15.
+ */
+public class ResourceSource extends BaseSource implements Source {
+
+    private static final String TAG = Consts.logTag("AMS");
+
+    @Override
+    public void load() throws CCCException {
+        load(getClass().getClassLoader().getResourceAsStream(Source.CCC_TABLE_FILE));
+    }
+
+}
