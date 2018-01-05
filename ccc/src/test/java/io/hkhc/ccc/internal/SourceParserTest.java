@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. Herman Cheung
+ * Copyright (c) 2018. Herman Cheung
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,19 +15,28 @@
  *
  */
 
-package io.hkhc.ccc;
+package io.hkhc.ccc.internal;
 
 import org.junit.Test;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+
 /**
- * Created by herman on 7/12/2017.
+ * Created by herman on 16/12/2017.
  */
 
-public class CCCGeneratorTest {
+public class SourceParserTest {
 
-    @Test
-    public void testOne() {
-
+    @Test(expected=NullPointerException.class)
+    public void test_null_prioritizer() throws IOException {
+        SourceParser parser = new SourceParser(null, new ByteArrayInputStream(new byte[] {}));
     }
+
+    @Test(expected=NullPointerException.class)
+    public void test_null_inputstream() throws IOException {
+        SourceParser parser = new SourceParser(new Prioritizer(), null);
+    }
+
 
 }

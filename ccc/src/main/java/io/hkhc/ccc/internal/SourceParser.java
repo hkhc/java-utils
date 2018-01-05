@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. Herman Cheung
+ * Copyright (c) 2018. Herman Cheung
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  *
  */
 
-package io.hkhc.ccc;
+package io.hkhc.ccc.internal;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -29,7 +29,7 @@ import java.util.regex.Pattern;
 /**
  * Created by herman on 16/12/2017.
  */
-class SourceParser {
+public class SourceParser {
 
     private BufferedReader reader;
     private List<String> currLineParts = Collections.EMPTY_LIST;

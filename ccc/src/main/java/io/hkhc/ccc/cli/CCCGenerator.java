@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. Herman Cheung
+ * Copyright (c) 2018. Herman Cheung
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  *
  */
 
-package io.hkhc.ccc;
+package io.hkhc.ccc.cli;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -23,6 +23,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import io.hkhc.ccc.internal.CharEntry;
+import io.hkhc.ccc.internal.Header;
+import io.hkhc.ccc.internal.PrimaryTable;
+import io.hkhc.ccc.internal.Prioritizer;
+import io.hkhc.ccc.internal.SecondaryTable;
+import io.hkhc.ccc.internal.SourceParser;
 import io.hkhc.utils.StringUtils;
 
 /**

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. Herman Cheung
+ * Copyright (c) 2018. Herman Cheung
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,24 +19,24 @@ package io.hkhc.ccc;
 
 import org.junit.Test;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
+import static junit.framework.Assert.assertEquals;
 
 /**
- * Created by herman on 16/12/2017.
+ * Created by herman on 4/12/2017.
  */
 
-public class SourceParserTest {
+public class ResourceSourceTest {
 
-    @Test(expected=NullPointerException.class)
-    public void test_null_prioritizer() throws IOException {
-        SourceParser parser = new SourceParser(null, new ByteArrayInputStream(new byte[] {}));
+    @Test
+    public void testLoad() throws Exception {
+
+        ResourceSource source = new ResourceSource();
+
+        // should not throw Exception
+        source.load();
+
+        assertEquals(6772, source.getCCC('鄧'));
+
     }
-
-    @Test(expected=NullPointerException.class)
-    public void test_null_inputstream() throws IOException {
-        SourceParser parser = new SourceParser(new Prioritizer(), null);
-    }
-
 
 }

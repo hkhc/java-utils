@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. Herman Cheung
+ * Copyright (c) 2018. Herman Cheung
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,28 +15,28 @@
  *
  */
 
-package io.hkhc.ccc;
+package io.hkhc.utils;
 
-import org.junit.Test;
-
-import static junit.framework.Assert.assertEquals;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Created by herman on 4/12/2017.
+ * Created by herman on 6/1/2018.
  */
 
-public class AndroidMemSourceTest {
+public class ProgressList implements FileOptions.Progress {
 
-    @Test
-    public void testLoad() throws Exception {
+    final List<Integer> progressList = new ArrayList<>();
 
-        ResourceSource source = new ResourceSource();
-
-        // should not throw Exception
-        source.load();
-
-        assertEquals(6772, source.getCCC('鄧'));
-
+    @Override
+    public void progress(int count) {
+        progressList.add(count);
     }
 
+    public List<Integer> getProgressList() {
+        return progressList;
+    }
+
+
 }
+

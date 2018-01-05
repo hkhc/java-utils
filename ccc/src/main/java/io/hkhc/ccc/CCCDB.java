@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. Herman Cheung
+ * Copyright (c) 2018. Herman Cheung
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,8 @@
 package io.hkhc.ccc;
 
 import java.text.DecimalFormat;
+
+import io.hkhc.ccc.internal.Source;
 
 // create CCC lookup table
 public class CCCDB {

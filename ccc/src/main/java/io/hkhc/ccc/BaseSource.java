@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. Herman Cheung
+ * Copyright (c) 2018. Herman Cheung
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +24,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
+import io.hkhc.ccc.internal.Header;
+import io.hkhc.ccc.internal.PrimaryTable;
+import io.hkhc.ccc.internal.SecondaryTable;
+import io.hkhc.ccc.internal.Source;
 import io.hkhc.utils.log.L;
 import io.hkhc.utils.log.Logger;
 

@@ -15,20 +15,21 @@
  *
  */
 
-package io.hkhc.ccc;
+package io.hkhc.ccc.internal;
 
-import io.hkhc.ccc.internal.Source;
+import io.hkhc.ccc.CCCException;
 
 /**
  * Created by herman on 8/9/15.
  */
-public class ResourceSource extends BaseSource implements Source {
+public interface Source {
 
-    private static final String TAG = Consts.logTag("AMS");
+    static final String CCC_TABLE_FILE = "io/hkhc/ccc/ccc-table-01.dat";
 
-    @Override
-    public void load() throws CCCException {
-        load(getClass().getClassLoader().getResourceAsStream(Source.CCC_TABLE_FILE));
-    }
+    void load() throws CCCException; // load with default filename.
+    void load(String destination) throws CCCException;
+
+    int getCCC(int c);
+    int getCodeCount();
 
 }

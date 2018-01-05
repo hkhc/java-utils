@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. Herman Cheung
+ * Copyright (c) 2018. Herman Cheung
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,19 +15,19 @@
  *
  */
 
-package io.hkhc.ccc;
+package io.hkhc.ccc.cli;
+
+import org.junit.Test;
 
 /**
- * Created by herman on 8/9/15.
+ * Created by herman on 7/12/2017.
  */
-public interface Source {
 
-    static final String CCC_TABLE_FILE = "io/hkhc/ccc/ccc-table-01.dat";
+public class CCCGeneratorTest {
 
-    void load() throws CCCException; // load with default filename.
-    void load(String destination) throws CCCException;
+    @Test
+    public void testOne() {
 
-    int getCCC(int c);
-    int getCodeCount();
+    }
 
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. Herman Cheung
+ * Copyright (c) 2018. Herman Cheung
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  *
  */
 
-package io.hkhc.ccc;
+package io.hkhc.ccc.internal;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -23,11 +23,11 @@ import org.junit.Test;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
-import io.hkhc.ccc.SourceParser.Token;
+import io.hkhc.ccc.internal.SourceParser.Token;
 
-import static io.hkhc.ccc.SourceParser.TokenType.ccc;
-import static io.hkhc.ccc.SourceParser.TokenType.group;
-import static io.hkhc.ccc.SourceParser.TokenType.unicode;
+import static io.hkhc.ccc.internal.SourceParser.TokenType.ccc;
+import static io.hkhc.ccc.internal.SourceParser.TokenType.group;
+import static io.hkhc.ccc.internal.SourceParser.TokenType.unicode;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
