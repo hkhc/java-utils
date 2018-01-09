@@ -57,7 +57,7 @@
 
 ```java
     SpannableString str = new SpannableString("Hello World");
-    str.setSpan(new BracketSpan(), 5, 11, 0);
+    str.setSpan(new HiddenSpan(), 5, 11, 0);
     textView.setText(str); // see "Hello" on screen
     assert("Hello World".equals(str.toString()));
 ```
