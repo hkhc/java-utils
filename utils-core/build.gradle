@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. Herman Cheung
+ * Copyright (c) 2018. Herman Cheung
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,12 +16,24 @@
  */
 
 plugins {
+    id 'groovy'
     id "java-library"
     id "maven-publish"
 }
 
 apply plugin: 'com.jfrog.bintray'
 apply from: 'bintray.gradle'
+
+sourceSets {
+    test {
+        groovy {
+            // Workaround for issue https://issuetracker.google.com/issues/65712492
+            // regarding to "Class not found .... Empty test suite" issue
+            outputDir = sourceSets.test.java.outputDir
+        }
+    }
+}
+
 
 task sourcesJar(type: Jar, dependsOn: classes) {
     classifier = 'sources'
@@ -41,10 +53,24 @@ artifacts {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Workaround for issue https://issuetracker.google.com/issues/65712492
+    // regarding to "Class not found .... Empty test suite" issue
+//    testRuntimeOnly files("build/classes/groovy/test")
+//    testRuntimeOnly files("build/classes/groovy/main")
+
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.assertj:assertj-core:3.1.0'
+    testImplementation 'org.codehaus.groovy:groovy-all:2.4.13'
+    testImplementation 'org.spockframework:spock-core:1.1-groovy-2.4'
 }
 
 sourceCompatibility = "1.7"
 targetCompatibility = "1.7"
 
+//println "sourcesets ${sourceSets}"
+//println "sourcesets main ${sourceSets.main.allSource.srcDirs}"
+//println "sourcesets test ${sourceSets.test.allSource.srcDirs}"
+//println "sourcesets main output ${sourceSets.main.output.files}"
+//println "sourcesets test output ${sourceSets.test.output.files}"
+//println "test ${configurations.test.files}"

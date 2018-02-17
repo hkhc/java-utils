@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. Herman Cheung
+ * Copyright (c) 2018. Herman Cheung
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,8 +19,6 @@ package io.hkhc.utils;
 
 import org.assertj.core.api.StrictAssertions;
 import org.junit.Test;
-
-import io.hkhc.utils.ByteUtils;
 
 /**
  * Created by herman on 14/8/15.

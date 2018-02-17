@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. Herman Cheung
+ * Copyright (c) 2018. Herman Cheung
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,22 +40,103 @@ public class Logger {
         return logFactory.newLog(metaTag+"_"+tag);
     }
 
+    /**
+     * Alias of {@link io.hkhc.utils.log.Logger#newLog(String)}
+     * @param tag tag name
+     * @return L logger with specified tag
+     * @see Logger#newLog(String)
+     */
+    public static L withTag(String tag) { return newLog(tag);}
+
+    /**
+     * Create a logger with abbreviated name of provided class
+     * @param clazz class to create tag
+     * @return L logger with specified tag
+     */
+    public static L withCls(Class clazz) { return newLog(getLogTag(clazz));}
+
+    /**
+     * Create a logger with abbreviated name of the enclosed class of the provided class
+     *
+     * For example,
+     * <code>
+     * class AppleBananaOrange {
+     *     private static final L l = Logger.withEncloses(new Object());
+     * }
+     * </code>
+     *
+     * The declaration creates a logger with tag "ABO"
+     *
+     * @param o object from an annonymous inner class of the target enclosing class
+     * @return L logger with specified tag
+     */
+    public static L withEncloses(Object o) { return newLog(getLogTag(o.getClass().getEnclosingClass()));}
+
+    /**
+     * Given a class object, create a abbreviate string that represent it.
+     * 1. package name is ignored
+     * 2. take all capital letters and digits
+     * 3. if there are less than two capital letters, the letter after those capital letters will
+     * also be included. For example,
+     * <code>
+     *     getClassNameAbbr("OrangeBananaApple").equals("OBA")
+     *     getClassNameAbbr("OrangeBanana").equals("OrBa")
+     *     getClassNameAbbr("AOrange").equals("AOr")
+     * </code>
+     * @param clazz class object to get class name
+     * @return abbreviated string
+     */
     public static String getClassNameAbbr(Class clazz) {
         String name = clazz.getSimpleName();
-        StringBuilder builder = new StringBuilder();
+        StringBuilder longBuilder = new StringBuilder();
+        StringBuilder shortBuilder = new StringBuilder();
+
         char[] nameArray = name.toCharArray();
+        boolean isLastCap = false;
+        int shortGroup = 0;
         for(char c : nameArray) {
-            if (Character.isUpperCase(c)) builder.append(c);
+            boolean isCap = Character.isUpperCase(c) || Character.isDigit(c);
+            // long version
+            if (isCap) {
+                longBuilder.append(c);
+            }
+            // short version
+            if (shortGroup<=2) {
+                if (isCap) {
+                    shortBuilder.append(c);
+                    shortGroup++;
+                }
+                else if (isLastCap) {
+                    shortBuilder.append(c);
+                }
+            }
+
+            isLastCap = isCap;
         }
-        return builder.toString();
+
+        if (shortGroup>2) {
+            return longBuilder.toString();
+        }
+        else {
+            return shortBuilder.toString();
+        }
     }
 
+    /**
+     * Create log tag from class name by abbreviation, and trim the result tag name
+     * to 23 characters max. It is also the tag size limitation to Android Log.
+     * @param clazz
+     * @return
+     */
     public static String getLogTag(Class clazz) {
-        final String tag = "XV_"+ getClassNameAbbr(clazz);
+        final String tag = metaTag + "_" + getClassNameAbbr(clazz);
         final int length = tag.length();
         if (length > MAX_LOG_TAG_LENGTH) {
             return tag.substring(0, MAX_LOG_TAG_LENGTH);
         }
-        return tag;
+        else {
+            return tag;
+        }
     }
+
 }
